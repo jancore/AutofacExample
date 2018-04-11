@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Autofac;
+using Clases;
+
+namespace EjemploAutofac
+{
+    class Program
+    {
+        private static IContainer Container { get; set; }
+
+        static void Main(string[] args)
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterType<ConsoleOutput>().As<IOutput>();
+        }
+    }
+}
