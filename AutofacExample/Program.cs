@@ -16,6 +16,19 @@ namespace EjemploAutofac
         {
             var builder = new ContainerBuilder();
             builder.RegisterType<ConsoleOutput>().As<IOutput>();
+            builder.RegisterType<TodayWriter>().As<IDataWriter>();
+            Container = builder.Build();
+
+            WriteDate();
+            Console.ReadLine();
+        }
+        public static void WriteDate()
+        {
+            using (var scope = Container.BeginLifetimeScope())
+            {
+                var writer = scope.Resolve<IDataWriter>();
+                writer.WriteDate();
+            }
         }
     }
 }
